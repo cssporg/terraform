@@ -4,11 +4,29 @@ Terraform is used to provision and manage IT Infrastructure
 
 Pre-Requisites
 ============================
+
+# Step 1: Launch ec2 instance to run terraform with name sandbox
+
+Login to sandbox instance
+
+$sudo yum install git -y
+
+$git clone https://github.com/containerrepos/DevOps.git
+
+$cd DevOps
+
+$sh sandbox.sh
+
+$source export.sh
+
+# Step 2: Build Custom AMI
+
 $git clone https://github.com/containerrepos/custom-ami.git
 
 $cd custom-ami/packer/
 
 $/usr/bin/packer build builders.json
+
 
 Execution Flow
 =====================
