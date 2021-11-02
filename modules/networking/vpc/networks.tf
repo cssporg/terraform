@@ -81,7 +81,7 @@ count = "${var.azs_cnt}"
 route_table_id = "${element(aws_route_table.privatertb.*.id, count.index)}"
 destination_cidr_block = "0.0.0.0/0"
 nat_gateway_id = "${element(aws_nat_gateway.myngw.*.id, count.index)}"
-depends_on = ["aws_route_table.privatertb"]
+depends_on = ["aws_route_table.privatertb", "aws_nat_gateway.myngw"]
 }
 
 resource "aws_route" "route_mainrtb"{
