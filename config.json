@@ -13,7 +13,7 @@
 
 "enable_user_defined_ips" : "false",
 
-"appserver_pa_ips" : ["192.168.20.40:0"],
+"appserver_pa_ips" : ["10.0.20.40:0"],
 
 "rds_mysql_db" : {
   "recover" : "false",
