@@ -50,10 +50,11 @@ destination_cidr_block = "0.0.0.0/0"
 gateway_id = "${aws_internet_gateway.myigw.id}"
 }
  
-#resource "aws_route_table_association" "publicrtba1"{
-#route_table_id = "${aws_route_table.publicrtb1.id}"
-#subnet_id = "${aws_subnet.publicsubnet1.id}"
-#}
+resource "aws_route_table_association" "publicrtba1"{
+count = "${var.azs_cnt}"
+route_table_id = "${aws_route_table.publicrtb.id}"
+subnet_id = "${element(aws_subnet.lbsubnet.*.id, count.index)}"
+}
 
 ############################################ Private Subnets ###############################3
 
@@ -86,6 +87,13 @@ depends_on = ["aws_route_table.privatertb"]
     create = "5m"
   }
 }
+
+resource "aws_route_table_association" "privaterta1" {
+count = "${var.enable_user_defined_ips ? var.desired_azs_cnt : var.azs_cnt}"
+route_table_id = "${element(aws_route_table.privatertb.*.id, count.index)}"
+subnet_id = "${element(aws_subnet.appsubnet.*.id, count.index)}"
+}
+
 
 resource "aws_route" "route_mainrtb"{
 route_table_id = "${aws_vpc.myvpc.main_route_table_id}"
