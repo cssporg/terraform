@@ -14,19 +14,21 @@ Name = "myigw"
 }
 
 resource "aws_nat_gateway" "myngw" {
-  allocation_id = "${aws_eip.ngweip.id}"
-  subnet_id     = "${aws_subnet.lbsubnet.id}"
+  count = "${var.azs_cnt}"
+  allocation_id = "${element(aws_eip.ngweip.*.id, count.index)}"
+  subnet_id     = "${element(aws_subnet.lbsubnet.*.id, count.index)}"
   tags = {
     Name = "myngw"
   }
 }
 
 resource "aws_eip" "ngweip"{
+count = "${var.azs_cnt}"
 vpc = true
 }
-
 ############################################ Public Subnets ###############################3
 resource "aws_subnet" "lbsubnet"{
+count = "${var.azs_cnt}"
 vpc_id = "${aws_vpc.myvpc.id}"
 cidr_block = "${cidrsubnet(var.vpc_cidr_lbsubnet, 2, count.index)}"
 availability_zone = "${element(split(",", var.azs_lst), count.index)}"
@@ -67,6 +69,7 @@ Name = "appsubnet"
 }
 
 resource "aws_route_table" "privatertb"{
+count = "${var.azs_cnt}"
 vpc_id = "${aws_vpc.myvpc.id}"
 tags = {
 Name = "privatertb"
@@ -78,6 +81,7 @@ count = "${var.azs_cnt}"
 route_table_id = "${element(aws_route_table.privatertb.*.id, count.index)}"
 destination_cidr_block = "0.0.0.0/0"
 nat_gateway_id = "${element(aws_nat_gateway.myngw.*.id, count.index)}"
+depends_on = ["aws_route_table.privatertb"]
 }
 
 resource "aws_route" "route_mainrtb"{
@@ -93,7 +97,7 @@ gateway_id = "${aws_internet_gateway.myigw.id}"
 resource "aws_subnet" "rds_subnet" {
   count = 2
   vpc_id       = "${aws_vpc.myvpc.id}"
-  cidr_block = "192.168.${var.rds_base_subnet+count.index}.0/24"
+  cidr_block = "10.0.${var.rds_base_subnet+count.index}.0/24"
   availability_zone = "${element(split(",",var.azs_lst), count.index)}"
   tags = {
     Name = "rdssubnet"

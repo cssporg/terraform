@@ -12,6 +12,9 @@ resource "aws_db_instance" "mysqldb" {
   vpc_security_group_ids = ["${var.websg}"]
   parameter_group_name = "default.mysql5.7"
   skip_final_snapshot  = true
+#  tags={
+#  Name = "mydb"
+#  }
 }
 resource "aws_db_instance" "mysqldbr" {
   count = "${var.rds_mysql_db["recover"] ? length(split(",", var.rds_mysql_db["snapshot_names"])): 0}"
@@ -28,4 +31,7 @@ resource "aws_db_instance" "mysqldbr" {
   vpc_security_group_ids = ["${var.websg}"]
   parameter_group_name = "default.mysql5.7"
   skip_final_snapshot  = true
+#  tags={
+#  Name = "mydb"
+#  }
 }

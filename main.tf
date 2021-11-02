@@ -22,11 +22,11 @@ appserver = "${module.computing.appserver}"
 vpc_cidr = "${var.vpc_cidr}"
 vpc_cidr_lbsubnet = "${var.vpc_cidr_lbsubnet}"
 vpc_cidr_appsubnet = "${var.vpc_cidr_appsubnet}"
-#azs_lst = "${lookup(var.azs, var.myregion)}"
-#azs_cnt = "${length(split(",",lookup(var.azs, var.myregion)))}"
-#desired_azs_cnt = "${var.desired_azs_cnt}"
-#enable_user_defined_ips = "${var.enable_user_defined_ips}"
-#appserver_pa_ips = "${var.appserver_pa_ips}"
+azs_lst = "${lookup(var.azs, var.myregion)}"
+azs_cnt = "${length(split(",",lookup(var.azs, var.myregion)))}"
+desired_azs_cnt = "${var.desired_azs_cnt}"
+enable_user_defined_ips = "${var.enable_user_defined_ips}"
+appserver_pa_ips = "${var.appserver_pa_ips}"
 }
 
 
@@ -49,3 +49,8 @@ source = "./modules/cloudinit"
 }
 
 
+module "tags"{
+source = "./modules/tags"
+fname = "${var.fname}"
+lname = "${var.lname}"
+}
