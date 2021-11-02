@@ -17,6 +17,10 @@ $git clone https://github.com/cssporg/infra_manager.git
 
 $cd infra_manager
 
+$vi config.json
+
+myamiid : ""
+
 $terraform init .
 
 $terraform validate -var-file=config.json
