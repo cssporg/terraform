@@ -4,8 +4,11 @@ Terraform is used to provision and manage IT Infrastructure
 
 Pre-Requisites
 ============================
+$git clone https://github.com/containerrepos/custom-ami.git
 
+$cd custom-ami/packer/
 
+$/usr/bin/packer build builders.json
 
 Execution Flow
 =====================
