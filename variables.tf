@@ -43,10 +43,10 @@ variable "multi_az" {
 }
 variable "enable_user_defined_ips" {
   description = "enable user defined appservers ips"
-  default = false
+  default = "false"
 }
 variable "appserver_pa_ips" {
-  type = list
+  type = "list"
   description = "internal ips to assign appserver nodes"
   default = [""]
 }

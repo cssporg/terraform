@@ -11,6 +11,8 @@ user_data = "${map("lbserver",module.cloudinit.lbuserdata, "appserver",module.cl
 myamiid = "${var.myamiid}"
 mykeypair = "${var.mykeypair}"
 tags = "${module.tags.tags}"
+enable_user_defined_ips = "${var.enable_user_defined_ips}"
+appserver_pa_ips = "${var.appserver_pa_ips}"
 }
 
 

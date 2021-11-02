@@ -27,3 +27,7 @@ type = "map"
 variable "tags"{
 type = "map"
 }
+
+variable "appserver_pa_ips" { type = "list" }
+variable "enable_user_defined_ips" {}
+

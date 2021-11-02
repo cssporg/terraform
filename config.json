@@ -5,7 +5,7 @@
 
 "mykeypair" : "virginia",
 
-"myamiid" : "ami-0affd4508a5d2481b",
+"myamiid" : "ami-0d783583d5d256a47",
 
 "multi_az" : "false",
 
@@ -13,7 +13,7 @@
 
 "enable_user_defined_ips" : "false",
 
-"appserver_pa_ips" : ["10.0.20.40:0"],
+"appserver_pa_ips" : ["10.0.20.54:0"],
 
 "rds_mysql_db" : {
   "recover" : "false",
