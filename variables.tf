@@ -25,7 +25,8 @@ variable "vpc_cidr_appsubnet" {
 variable "azs" {
   type = "map"
   default = {
-    us-east-1 = "us-east-1a,us-east-1b,us-east-1c"
+    us-east-1 = "us-east-1a,us-east-1b,us-east-1c",
+    us-west-2 = "us-west-2a,us-west-2b,us-west-2c"
 }
 }
 variable "rds_azs" {
