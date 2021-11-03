@@ -161,3 +161,14 @@ $terraform validate -var-file=config.json
 
 $terraform apply -var-file=config.json
 
+
+
+# After disaster
+
+vi config.json
+
+"rds_mysql_db" : {
+  "recover" : "true",
+  "snapshot_names" : "rds-mysql-db-snp"
+}
+
