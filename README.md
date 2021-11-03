@@ -122,6 +122,8 @@ $cd infra_manager
 
 $vi config.json
 
+mykeypair : ""
+
 myamiid : ""
 
 
