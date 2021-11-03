@@ -41,6 +41,8 @@ $cd infra_manager
 
 $vi config.json
 
+"myregion" : ""
+
 myamiid : ""
 
 $terraform init .
