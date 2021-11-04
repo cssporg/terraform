@@ -36,9 +36,9 @@ write_files:
   content: |
      #!/bin/sh
      sudo systemctl start docker
-     git clone https://github.com/cloudstones/docker-ansible.git
+     git clone https://github.com/cssporg/ansible.git
 
-     cd docker-ansible/src/webapp
+     cd ansible
 
      ansible-playbook -i hosts plays/webapp.yml
 
