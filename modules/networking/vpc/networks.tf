@@ -84,7 +84,7 @@ destination_cidr_block = "0.0.0.0/0"
 nat_gateway_id = "${element(aws_nat_gateway.myngw.*.id, count.index)}"
 depends_on = ["aws_route_table.privatertb"]
    timeouts {
-    create = "5m"
+    create = "10m"
   }
 }
 
